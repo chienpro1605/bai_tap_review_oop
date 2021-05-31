@@ -47,11 +47,6 @@ public class DienThoại {
 
     @Override
     public String toString() {
-        return "DienThoại{" +
-                "name='" + name + '\'' +
-                ", price=" + price +
-                ", brand='" + brand + '\'' +
-                ", maMay='" + maMay + '\'' +
-                '}';
+        return name + ","+ price+ "," + brand+ "," + maMay;
     }
 }

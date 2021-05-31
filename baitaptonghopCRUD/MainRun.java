@@ -1,13 +1,14 @@
 package baitaptonghopCRUD;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MainRun {
-    public static void main(String[] args) {
-//        QuanLyDienThoai ql = new QuanLyDienThoai();
-//        ql.addDienThoai(new DienThoại("iphone 12",40000,"apple","i1"));
-//        ql.addDienThoai(new DienThoại("iphone 12",13000,"samsung","s1"));
-//        ql.addDienThoai(new DienThoại("oppo s3",45000,"oppo","o1"));
+    public static void main(String[] args) throws IOException {
+        QuanLyDienThoai ql = new QuanLyDienThoai();
+        ql.addDienThoai(new DienThoại("iphone 12",40000,"apple","i1"));
+        ql.addDienThoai(new DienThoại("samsung s4",13000,"samsung","s1"));
+        ql.addDienThoai(new DienThoại("oppo s3",45000,"oppo","o1"));
 //        ql.display();
 //
 //        System.out.println(ql.findVitri("samsung s6"));
@@ -28,7 +29,7 @@ public class MainRun {
 //        ql.sortDienThoai();
 //        ql.display();
             Scanner scanner = new Scanner(System.in);
-            QuanLyDienThoai ql = new QuanLyDienThoai();
+//            QuanLyDienThoai ql = new QuanLyDienThoai();
             int choice;
             while (true){
                 dispalyMenu();
@@ -41,20 +42,20 @@ public class MainRun {
                         String name = scanner.nextLine();
                         System.out.println("nhập giá");
                         int price = scanner.nextInt();
-                        scanner.nextLine();
                         System.out.println("nhập hãng điện thoại");
+                        scanner.nextLine();
                         String brand = scanner.nextLine();
                         System.out.println("nhập mã máy");
                         String maMay = scanner.nextLine();
                         DienThoại dienThoại = new DienThoại(name,price,brand,maMay);
                         ql.addDienThoai(dienThoại);
+                        ql.writeFile("demo.csv",ql.list);
                         break;
                     case 2:
                         scanner.nextLine();
                         System.out.println("nhập tên điện thoại muốn update");
                         String name1 = scanner.nextLine();
                         if (ql.findVitri(name1) != -1){
-                            scanner.nextLine();
                             System.out.println("nhập tên điện thoại mới");
                             String name2 = scanner.nextLine();
                             System.out.println("nhập giá");
@@ -123,9 +124,16 @@ public class MainRun {
                     case 6:
                         ql.display();
                         break;
+                    case 7:
+                        ql.writeFile("demo.csv",ql.list);
+                        break;
+                    case 8:
+                        ql.readFile("demo.csv");
+                        break;
                     case 0:
                         System.out.println("tạm biệt bạn");
                         System.exit(0);
+
 
                 }
             }
@@ -138,6 +146,8 @@ public class MainRun {
         System.out.println("4. tìm kiếm điện thoại");
         System.out.println("5. sắp xếp điện thoại");
         System.out.println("6. hiển thị");
+        System.out.println("7. lưu dữ liệu điện thoại");
+        System.out.println("8. hiện thị dữ liệu từ file");
         System.out.println("0. thoát");
     }
 }
